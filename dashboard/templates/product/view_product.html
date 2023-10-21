@@ -1,0 +1,64 @@
+
+{% extends 'master.html' %}
+{% load static %}
+{% block  page%} 
+
+<div class="col-md-10">
+   <div class="white_shd full margin_bottom_30">
+      <div class="full graph_head">
+         <div class="heading1 margin_0">
+            <h2 class="text-primary">Product View Item</h2>
+         </div>
+      </div>
+      <div class="full inner_elements">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="tab_style1">
+                  <div class="tabbar padding_infor_info">
+                     <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                           <a class="nav-item nav-link btn-success  btn-outline-primary " href="{% url "product_table" %}"  aria-controls="nav-profile" aria-selected="false"><i class="fa fa-backward mr-2"></i>Back</a>
+                        </div>
+                     </nav>
+                     <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                           <table class="table">
+                              <thead>
+                                 <tr>
+                                    <th>ID</th>
+                                    <th>Category Name</th>
+                                    <th>Unit Price</th>
+                                    <th>InStock</th>
+                                    <th>Created By</th>
+                                    <th>Created Date</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr> 
+                                       <td>{{ product_view.id  }}</td>
+                                       <td>{{ product_view.name  }}</td>
+                                       <td>{{ product_view.unitprice  }}</td>
+                                       <td>{{ product_view.qtyInstock  }}</td>
+                                       <td>{{ product_view.create_by  }}</td>
+                                       <td>{{ product_view.create_date|date:"d-m-Y"   }}</td>
+                                       {% comment %} <td>
+                                          <a class="btn btn-success" href="{% url "view_record" item.id %}" data-toggle="tooltip" data-placement="left" title="" data-original-title="Left">View</a>
+                                          <a class="btn btn-info" href="{% url "category_edit" %}" data-toggle="tooltip" data-placement="right" title="" data-original-title="Left">Update</a>
+                                          <a class="btn btn-danger" href="{% url "category_delete" item.id %}" data-toggle="tooltip" data-placement="right" title="" data-original-title="Left">Delete</a>
+                                       </td> {% endcomment %}
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>     
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+      {% comment %} {% endblock  %} {% endcomment %}
+{% endblock%}

@@ -1,0 +1,80 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block  page%} 
+
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Product Table</h2>
+            </div>
+         </div>
+      </div>
+      <!-- row -->
+      <div class="row">
+         <!-- table section -->
+         <!-- table section -->
+         <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30 ">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0 ">
+               </div>
+               <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                     <a class="nav-item nav-link btn-success  btn-outline-primary " href="{% url "product_create" %}"  aria-controls="nav-profile" aria-selected="false"><i class="fa fa-plus mr-2"></i>Add New</a>
+                  </div>
+               </nav>
+               </div>
+               <div class="table_section padding_infor_info">
+                  <div class="table-responsive-sm">
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>ID</th>
+                              <th>Product Name</th>
+                              <th>UnitPrice</th>
+                              <th>Instock</th>
+                              <th>CreateBy</th>
+                              <th>Photo</th>
+                              <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {% for item in products %}
+                           <tr>
+                                 <td>{{ item.id  }}</td>
+                                 <td>{{ item.name  }}</td>
+                                 <td>{{ item.unitprice  }}</td>
+                                 <td>{{ item.qtyInstock  }}</td>
+                                 <td>{{ item.create_by  }}</td>
+                                 <td><img src="/media/{{item.photo}}" width="45px"></td>
+                                 {% comment %} <td>{{ item.create_by  }}</td>
+                                 <td>{{  item.create_date|date:"d-m-Y"   }}</td> {% endcomment %}
+                                 <td>
+                                    <a class="btn btn-success" href="{% url "view_product" item.id %}" data-toggle="tooltip" data-placement="left" title="" data-original-title="Left"><i class="fa fa-eye mr-2"></i>View</a>
+                                    <a class="btn btn-info" href="{% url "edit_product" item.id%}" data-toggle="tooltip" data-placement="right" title="" data-original-title="Left"><i class="fa fa-pencil mr-2"></i>Update</a>
+                                    <a class="btn btn-danger" href="{% url "category_delete" item.id %}" data-toggle="tooltip" data-placement="right" title="" data-original-title="Left"><i class="fa fa-trash mr-2"></i>Delete</a>
+                                 </td>
+                           </tr>
+                           {% endfor %}
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+      </div>
+   </div>
+      </div>
+   </div>
+
+      {% comment %} {% endblock  %} {% endcomment %}
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+      <script>
+         {% for msg in messages %}
+            Swal.fire('{{ msg }}');
+         {% endfor %}
+      </script>
+{% endblock%}

@@ -1,0 +1,80 @@
+
+{% extends 'master.html' %}
+{% load static %}
+{% block  page%} 
+
+<div class="col-md-6">
+   <div class="white_shd full margin_bottom_30">
+      <div class="full graph_head">
+         <div class="heading1 margin_0">
+            <h2 class="text-primary">Product Form Create</h2>
+         </div>
+      </div>
+      <div class="full inner_elements">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="tab_style1">
+                  <div class="tabbar padding_infor_info">
+                     <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                           <a class="nav-item nav-link btn-success  btn-outline-primary " href="{% url "product_table" %}"  aria-controls="nav-profile" aria-selected="false"><i class="fa fa-backward mr-2"></i>Back</a>
+                        </div>
+                     </nav>
+                     <div class="tab-content" id="nav-tabContent">
+                        <form action="{% url 'store_product' %}" method="POST" enctype="multipart/form-data">
+                           {% csrf_token %}  
+                           {{ form.as_table }}
+                           <div class="d-flex flex-row bd-highlight">
+                           <div class="row mb-3">
+                              <label for="inputEmail3" class="col-sm-2 col-form-label">Name: </label>
+                              <div class="col-sm-10 mb-3">
+                              <input type="text" class="form-control" name="name" id="inputEmail3" placeholder="Enter product name" required>
+                              </div>
+                              <label for="inputEmail3" class="col-sm-2 col-form-label">Barcode: </label>
+                              <div class="col-sm-10 mb-3">
+                                <input type="text" class="form-control" name="barcode" id="inputEmail3" placeholder="Enter product Barcode" required>
+                                </div>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">UnitPrice: </label>
+                                <div class="col-sm-10 mb-3">
+                                    <input type="text" class="form-control" name="unitprice" id="inputEmail3" placeholder="Enter product UnitPrice" required>
+                                </div>
+
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">InStock: </label>
+                                <div class="col-sm-10 mb-3">
+                                    <input type="text" class="form-control" name="instock" id="inputEmail3" placeholder="Enter product Instock" required>
+                                </div>
+
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Photo: </label>
+                                <div class="col-sm-10 mb-3">
+                                    <input type="file" class="form-control" name="photo" id="inputEmail3" placeholder="Enter product name" required>
+                                </div>
+
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Category: </label>
+                                <div class="col-sm-10 mb-3">
+                                    <select class="form-control" name="selectitem">
+                                        {% for item in category %}
+                                            <option value="{{ item.id }}">{{ item.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">      </label>
+                                <div class="col-sm-10"><button type="Submit" class="form-control btn btn-primary right"><i class="fa fa-plus mr-2"></i>Submit</button></div>       
+                           </div>  
+                        </form>             
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div> 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+      <script>
+         {% for msg in messages %}
+            Swal.fire('{{ msg }}');
+         {% endfor %}
+      </script>
+{% endblock%}
